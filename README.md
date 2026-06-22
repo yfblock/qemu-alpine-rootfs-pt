@@ -11,7 +11,6 @@ QEMU RISC-V Alpine Linux 启动环境，支持 9p 文件夹直通和块设备直
 | `alpine-minirootfs-*.tar.gz` | Alpine 官方 mini rootfs 压缩包 |
 | `start.sh` | 启动脚本 |
 | `patch-alpine-rootfs.sh` | rootfs 补丁（busybox init + 串口登录） |
-| `linux/` | Linux 内核源码（symlink） |
 
 ## 快速开始
 
@@ -62,10 +61,11 @@ sudo usermod -aG disk $USER
 
 ## 内核编译
 
-从 `linux/` 源码编译 RISC-V 内核：
+从 Linux 源码编译 RISC-V 内核：
 
 ```bash
-cd linux
+# 需要 riscv64-linux-gnu-gcc 交叉编译工具链
+# Arch Linux: pacman -S riscv64-linux-gnu-gcc
 make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- olddefconfig
 make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j$(nproc) Image
 cp arch/riscv/boot/Image ../Image
