@@ -21,7 +21,7 @@ cat > "${ROOTFS}/etc/inittab" << 'EOF'
 # 网络
 ::sysinit:/sbin/ip link set lo up
 ::sysinit:/sbin/ip link set eth0 up
-::sysinit:/sbin/udhcpc -i eth0
+::sysinit:/sbin/udhcpc -b -i eth0
 
 # 串口 getty
 ttyS0::respawn:/sbin/getty -L 115200 ttyS0 vt100
