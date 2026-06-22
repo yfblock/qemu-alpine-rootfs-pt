@@ -43,6 +43,23 @@ tar xzf alpine-minirootfs-*.tar.gz -C alpine-rootfs
 ./start.sh ./alpine-rootfs "loglevel=7"
 ```
 
+## 直通块设备的权限
+
+直通块设备（如 USB）时，QEMU 需要对设备有读写权限。
+
+```bash
+# 查看设备权限
+ls -l /dev/sdb2
+# brw-rw---- 1 root disk 8, 18 Jun 22 11:00 /dev/sdb2
+
+# 临时授权（重启后失效）
+sudo chmod 666 /dev/sdb2
+
+# 或加入 disk 组（推荐）
+sudo usermod -aG disk $USER
+# 重新登录后生效
+```
+
 ## 内核编译
 
 从 `linux/` 源码编译 RISC-V 内核：
