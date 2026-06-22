@@ -1,0 +1,5 @@
+alpine-rootfs/
+alpine-rootfs.img
+alpine-rootfs.tar.gz
+alpine-minirootfs-*.tar.gz
+linux
